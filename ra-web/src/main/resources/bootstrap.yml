@@ -1,0 +1,22 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /ra-web
+spring:
+  application:
+    name: ra-web
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    prefer-ip-address: true   
+    hostname: 127.0.0.1
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    
+# 配置日志级别
+logging:                                
+  level:
+    root: INFO
+    com.himalaya: DEBUG
+  file: ./logs/app.log

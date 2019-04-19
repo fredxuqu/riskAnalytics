@@ -1,0 +1,33 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: service-registry
+  profiles:
+    active: standalone
+    
+eureka:
+  instance:
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 30
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+    healthcheck:
+      enabled: true
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 4000
+    
+# Control log level TRACE < DEBUG < INFO < WARN < ERROR  
+logging:
+  level:
+    com:
+      himalaya: info
+  file: logs/${spring.application.name}.log
+    
