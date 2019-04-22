@@ -3,6 +3,8 @@ package com.himalaya.app.common.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.himalaya.common.dto.Paging;
+
 import lombok.Data;
 
 @Data
@@ -19,4 +21,8 @@ public abstract class BaseCondition implements Serializable {
 	private String modifyUser;
 	
 	private Date modifyTime;
+	
+	private Paging paging;
+	
+	private String sort;
 }

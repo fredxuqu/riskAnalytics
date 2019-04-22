@@ -3,7 +3,6 @@ package com.himalaya.app.common.service;
 import java.util.List;
 
 import com.himalaya.app.common.domain.BaseCondition;
-import com.himalaya.app.user.domain.UserDO;
 
 public interface IBaseService <E, PK>{
 	/**
@@ -11,7 +10,7 @@ public interface IBaseService <E, PK>{
 	 * @param entity
 	 * @return
 	 */
-    int insert(UserDO entity);
+    int insert(E entity);
     
 	/**
 	 * Delete by primary key

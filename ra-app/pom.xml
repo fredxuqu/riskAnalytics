@@ -53,8 +53,23 @@
 		</dependency>
 		
 		<dependency>
+        	<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+    	</dependency>
+		
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>net.sf.dozer</groupId>
+		    <artifactId>dozer</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.himalaya</groupId>
+		    <artifactId>ra-common</artifactId>
 		</dependency>
 
 	</dependencies>
