@@ -1,13 +1,17 @@
-package com.himalaya.app.user.domain;
+package com.himalaya.user.dto;
 
-import com.himalaya.app.common.domain.BaseDO;
+import java.io.Serializable;
 
+import com.himalaya.common.dto.BaseDTO;
+
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
-public class UserDO extends BaseDO {
+@ApiModel("User Informations")
+public class UserDTO extends BaseDTO implements Serializable {
 
 	private static final long serialVersionUID = 7749714030937344412L;
 

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.himalaya.app.user.mapper.UserMapper">
+	<resultMap id="BaseResultMap"
+		type="com.himalaya.app.user.domain.UserDO">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+		<result column="STATUS" jdbcType="INTEGER" property="status" />
+		<result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+		<result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="MODIFY_USER" jdbcType="VARCHAR" property="modifyUser" />
+		<result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+	</resultMap>
+
+	<sql id="Condition_Where_Clause">
+		<where>
+			<if test="userName != null">
+				AND USER_NAME = #{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				AND EMAIL = #{email,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				AND PASSWORD = #{password,jdbcType=VARCHAR}
+			</if>
+			<if test="roleId != null">
+				AND ROLE_ID = #{roleId,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				AND STATUS = #{status,jdbcType=INTEGER}
+			</if>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="createUser != null">
+				AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
+			</if>
+			<if test="modifyUser != null">
+				AND MODIFY_USER = #{modifyUser,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="Base_Column_List">
+		ID, USER_NAME, EMAIL, PASSWORD, ROLE_ID, STATUS, CREATE_USER, CREATE_TIME, MODIFY_USER, MODIFY_TIME
+	</sql>
+
+	<insert id="insert"
+		parameterType="com.himalaya.app.user.domain.UserDO">
+		insert into
+		tb_sys_user (ID, USER_NAME, EMAIL, PASSWORD, ROLE_ID, STATUS,
+					 CREATE_USER, CREATE_TIME, MODIFY_USER, MODIFY_TIME)
+		values
+		(
+			#{id,jdbcType=BIGINT},
+			#{userName,jdbcType=VARCHAR},
+			#{email,jdbcType=VARCHAR},
+			#{password,jdbcType=VARCHAR},
+			#{roleId,jdbcType=VARCHAR},
+			#{status,jdbcType=INTEGER},
+			#{createUser,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP}, 
+			#{modifyUser,jdbcType=VARCHAR},
+			#{modifyTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from tb_sys_user
+		where
+		ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<update id="update"
+		parameterType="com.himalaya.app.user.domain.UserDO">
+		update tb_sys_user
+		set USER_NAME =
+		#{userName,jdbcType=VARCHAR},
+		EMAIL = #{email,jdbcType=VARCHAR},
+		PASSWORD = #{password,jdbcType=VARCHAR},
+		ROLE_ID =
+		#{roleId,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=INTEGER}
+		where ID
+		= #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByID" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_sys_user
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="queryByCondition"
+		parameterType="com.himalaya.app.user.domain.UserCondition"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_sys_user
+		<if test="_parameter != null">
+			<include refid="Condition_Where_Clause" />
+		</if>
+	</select>
+
+	<select id="countByCondition"
+		parameterType="com.himalaya.app.user.domain.UserCondition"
+		resultType="java.lang.Long">
+		select count(*)
+		from tb_sys_user
+		<if test="_parameter != null">
+			<include refid="Condition_Where_Clause" />
+		</if>
+	</select>
+</mapper>

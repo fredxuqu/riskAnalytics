@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.himalaya.app.user.mapper.NewsMapper">
+	<resultMap id="BaseResultMap"
+		type="com.himalaya.app.user.domain.NewsDO">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="TITLE" jdbcType="VARCHAR" property="title" />
+		<result column="AUTHOR" jdbcType="VARCHAR" property="author" />
+		<result column="TYPE" jdbcType="INTEGER" property="type" />
+		<result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+		<result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="MODIFY_USER" jdbcType="VARCHAR" property="modifyUser" />
+		<result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+	</resultMap>
+
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+	type="com.himalaya.app.user.domain.NewsDO">
+	<result column="CONTENT" jdbcType="LONGVARCHAR"
+		property="content" />
+</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, TITLE, AUTHOR, TYPE, PUBLISH_TIME, CREATE_USER,
+		CREATE_TIME,
+		MODIFY_USER, MODIFY_TIME
+	</sql>
+
+	<sql id="Blob_Column_List">
+		CONTENT
+	</sql>
+
+	<sql id="Condition_Where_Clause">
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="title != null">
+				AND TITLE = #{title,jdbcType=VARCHAR}
+			</if>
+			<if test="author != null">
+				AND AUTHOR = #{author,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				AND TYPE = #{type,jdbcType=INTEGER}
+			</if>
+			<if test="publishTime != null">
+				AND PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="createUser != null">
+				AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyUser != null">
+				AND MODIFY_USER = #{modifyUser,jdbcType=VARCHAR}
+			</if>
+			<if test="modifyTime != null">
+				AND MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="insert"
+		parameterType="com.himalaya.app.user.domain.NewsDO">
+		insert into tb_sys_news (ID, TITLE, AUTHOR,
+		TYPE,
+		PUBLISH_TIME, CREATE_USER,
+		CREATE_TIME, MODIFY_USER, MODIFY_TIME,
+		CONTENT)
+		values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{author,jdbcType=VARCHAR},
+		#{type,jdbcType=INTEGER},
+		#{publishTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{content,jdbcType=LONGVARCHAR})
+	</insert>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from tb_sys_news
+		where
+		ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<update id="update"
+		parameterType="com.himalaya.app.user.domain.NewsDO">
+		update tb_sys_news
+		<set>
+			<if test="title != null">
+				TITLE = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="author != null">
+				AUTHOR = #{author,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="publishTime != null">
+				PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyUser != null">
+				MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByID" parameterType="java.lang.Long"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from tb_sys_news
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="queryByCondition"
+		parameterType="com.himalaya.app.user.domain.NewsCondition"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from tb_sys_news
+		<if test="_parameter != null">
+			<include refid="Condition_Where_Clause" />
+		</if>
+	</select>
+
+	<select id="countByCondition"
+		parameterType="com.himalaya.app.user.domain.NewsCondition"
+		resultType="java.lang.Long">
+		select count(*)
+		from tb_sys_news
+		<if test="_parameter != null">
+			<include refid="Condition_Where_Clause" />
+		</if>
+	</select>
+</mapper>

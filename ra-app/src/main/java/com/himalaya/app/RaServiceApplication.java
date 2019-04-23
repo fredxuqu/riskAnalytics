@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages= {"com.himalaya.app"})
 @EnableEurekaClient
 @MapperScan("com.himalaya.app.*.mapper")
 public class RaServiceApplication {

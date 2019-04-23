@@ -13,7 +13,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     
 mybatis:
-  mapperLocations: classpath:**/mapper/*.xml
+  mapperLocations: classpath:mapper/**/*.xml
     
 spring:
   application:
@@ -67,6 +67,12 @@ spring:
         login-username: admin
         # 登录密码
         login-password: 123456
+        
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
     
 # 配置日志级别
 logging:                                

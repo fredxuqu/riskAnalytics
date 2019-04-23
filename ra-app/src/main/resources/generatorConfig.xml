@@ -30,7 +30,7 @@
 		</javaModelGenerator>
 		
 		<!-- 生成的映射文件包名和位置 -->
-		<sqlMapGenerator targetPackage="com.himalaya.app.user.mapper"
+		<sqlMapGenerator targetPackage="mapper.mysql"
 			targetProject="src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
@@ -42,7 +42,8 @@
 		</javaClientGenerator>
 		
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
-		<table tableName="TB_SYS_USER" mapperName="UserMapper" domainObjectName="UserDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+		<!-- <table tableName="TB_SYS_USER" mapperName="UserMapper" domainObjectName="UserDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" /> -->
+		<table tableName="TB_SYS_NEWS" mapperName="NewsMapper" domainObjectName="NewsDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
 	</context>
 	
 </generatorConfiguration>

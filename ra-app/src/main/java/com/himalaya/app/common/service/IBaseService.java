@@ -3,14 +3,15 @@ package com.himalaya.app.common.service;
 import java.util.List;
 
 import com.himalaya.app.common.domain.BaseCondition;
+import com.himalaya.common.dto.PageDTO;
 
-public interface IBaseService <E, PK>{
+public interface IBaseService <Entity, PK>{
 	/**
 	 * Insert
 	 * @param entity
 	 * @return
 	 */
-    int insert(E entity);
+    int insert(Entity entity);
     
 	/**
 	 * Delete by primary key
@@ -24,21 +25,21 @@ public interface IBaseService <E, PK>{
      * @param entity
      * @return
      */
-    int update(E entity);
+    int update(Entity entity);
 
     /**
      * Select by primary key
      * @param id
      * @return
      */
-    E selectByID(PK id);
+    Entity selectByID(PK id);
 
     /**
      * Find by condition
      * @param T condition
      * @return
      */
-    <T extends BaseCondition> List<E> queryByCondition(T condition);
+    <T extends BaseCondition> List<Entity> queryByCondition(T condition);
     
     /**
      * Count by condition
@@ -53,11 +54,11 @@ public interface IBaseService <E, PK>{
      * @param condition
      * @return
      */
-    <T extends BaseCondition> List<E> queryByPage(T condition);
+    <T extends BaseCondition> PageDTO<Entity> queryByPage(T condition);
     
     /**
      * Query all records
      * @return
      */
-    List<E> queryAll();
+    List<Entity> queryAll();
 }
