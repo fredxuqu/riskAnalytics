@@ -1,6 +1,9 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
 *.log
+.settings/
+*.mvnw
+*.mvnw.*
 
 ### STS ###
 .apt_generated
@@ -9,7 +12,7 @@ target/
 .project
 .settings
 .springBeans
-/logs/
+*/logs/
 
 ### IntelliJ IDEA ###
 .idea
