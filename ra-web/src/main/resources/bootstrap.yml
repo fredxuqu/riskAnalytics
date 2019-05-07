@@ -5,6 +5,8 @@ server:
 spring:
   application:
     name: ra-web
+    service:
+      name: ra-app
 eureka:
   client:
     serviceUrl:

@@ -39,6 +39,7 @@
 		<module>ra-facade</module>
 		<module>ra-web</module>
 		<module>ra-app</module>
+		<module>ra-admin</module>
 	</modules>
 	
 	<dependencyManagement>
@@ -124,11 +125,23 @@
 			    <version>1.6.1</version>
 			</dependency>
 			
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.8.1</version>
+			</dependency>
+			
 			<!-- https://mvnrepository.com/artifact/net.sf.dozer/dozer -->
 			<dependency>
 			    <groupId>net.sf.dozer</groupId>
 			    <artifactId>dozer</artifactId>
 			    <version>${dozer.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.jayway.jsonpath</groupId>
+				<artifactId>json-path</artifactId>
+				<version>2.2.0</version>
 			</dependency>
 			
 			<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
@@ -147,12 +160,69 @@
 			    <groupId>com.himalaya</groupId>
 			    <artifactId>ra-facade</artifactId>
 			    <version>${project.version}</version>
-			</dependency>
-			
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 	
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+	
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/application.*</include>
+					<include>**/application-${spring.profiles.active}.*</include>
+					<include>**/bootstrap.*</include>
+					<include>**/*.png</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>*.*</include>
+					<include>**/*.json</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
