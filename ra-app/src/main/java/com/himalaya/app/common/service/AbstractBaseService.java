@@ -14,41 +14,83 @@ public class AbstractBaseService<Mapper extends IBaseMapper<Entity, PK>, Entity,
 	@Autowired
 	private Mapper mapper;
 
+	/**
+	 * insert
+	 * @param entity
+	 * @return
+	 */
 	@Override
 	public int insert(Entity entity) {
 		return mapper.insert(entity);
 	}
 
+	/**
+	 * delete by id
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public int delete(PK id) {
 		return mapper.delete(id);
 	}
 
+	/**
+	 * update
+	 * @param entity
+	 * @return
+	 */
 	@Override
 	public int update(Entity entity) {
 		return mapper.update(entity);
 	}
 
+	/**
+	 * query by ID
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public Entity selectByID(PK id) {
 		return mapper.selectByID(id);
 	}
 
+	/**
+	 * query by condition
+	 * @param condition
+	 * @param <T>
+	 * @return
+	 */
 	@Override
-	public <C extends BaseCondition> List<Entity> queryByCondition(C condition) {
+	public <T> List<Entity> queryByCondition(T condition) {
 		return mapper.queryByCondition(condition);
 	}
 
+	/**
+	 * count by condition
+	 * @param condition
+	 * @param <T>
+	 * @return
+	 */
 	@Override
-	public <C extends BaseCondition> Long countByCondition(C condition) {
+	public <T extends BaseCondition> Long countByCondition(T condition) {
 		return mapper.countByCondition(condition);
 	}
 
+	/**
+	 * query by page
+	 * @param condition
+	 * @param <T>
+	 * @return
+	 */
 	@Override
-	public <C extends BaseCondition> PageDTO<Entity> queryByPage(C condition) {
-		return findPage(condition, () -> mapper.queryByCondition(condition));
+	public <T extends BaseCondition> PageDTO<Entity> queryByPage(T condition) {
+		return findPage(condition, ()-> mapper.queryByCondition(condition));
 	}
 
+	/**
+	 * query all records
+	 * @return
+	 */
 	@Override
 	public List<Entity> queryAll() {
 		return null;

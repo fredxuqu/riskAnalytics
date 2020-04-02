@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * base DO
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

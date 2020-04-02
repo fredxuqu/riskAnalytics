@@ -9,7 +9,7 @@ public interface IBaseMapper<Entity, PK> {
 	
 	/**
 	 * Insert
-	 * @param record
+	 * @param entity
 	 * @return
 	 */
     int insert(Entity entity);
@@ -37,14 +37,14 @@ public interface IBaseMapper<Entity, PK> {
 
     /**
      * Find by condition
-     * @param id
+     * @param condition
      * @return
      */
     <C> List<Entity> queryByCondition(C condition);
     
     /**
      * Count by condition
-     * @param id
+     * @param condition
      * @return
      */
     <C> Long countByCondition(C condition);

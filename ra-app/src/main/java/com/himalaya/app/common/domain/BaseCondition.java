@@ -7,6 +7,9 @@ import com.himalaya.common.dto.Paging;
 
 import lombok.Data;
 
+/**
+ * Basic Condition Class
+ */
 @Data
 public abstract class BaseCondition implements Serializable {
 

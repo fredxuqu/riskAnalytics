@@ -9,7 +9,6 @@
 		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
 		<result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
 		<result column="STATUS" jdbcType="INTEGER" property="status" />
-		<result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
 		<result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
 		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="MODIFY_USER" jdbcType="VARCHAR" property="modifyUser" />
@@ -71,29 +70,25 @@
 
 	<delete id="delete" parameterType="java.lang.Long">
 		delete from tb_sys_user
-		where
-		ID = #{id,jdbcType=BIGINT}
+		 where ID = #{id,jdbcType=BIGINT}
 	</delete>
 
 	<update id="update"
 		parameterType="com.himalaya.app.user.domain.UserDO">
 		update tb_sys_user
-		set USER_NAME =
-		#{userName,jdbcType=VARCHAR},
-		EMAIL = #{email,jdbcType=VARCHAR},
-		PASSWORD = #{password,jdbcType=VARCHAR},
-		ROLE_ID =
-		#{roleId,jdbcType=VARCHAR},
-		STATUS = #{status,jdbcType=INTEGER}
-		where ID
-		= #{id,jdbcType=BIGINT}
+		   set  USER_NAME = #{userName,jdbcType=VARCHAR},
+				EMAIL = #{email,jdbcType=VARCHAR},
+				PASSWORD = #{password,jdbcType=VARCHAR},
+				ROLE_ID = #{roleId,jdbcType=VARCHAR},
+				STATUS = #{status,jdbcType=INTEGER}
+		 where ID = #{id,jdbcType=BIGINT}
 	</update>
 
 	<select id="selectByID" parameterType="java.lang.Long"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from tb_sys_user
+		  from tb_sys_user
 		where ID = #{id,jdbcType=BIGINT}
 	</select>
 
@@ -102,7 +97,7 @@
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from tb_sys_user
+		  from tb_sys_user
 		<if test="_parameter != null">
 			<include refid="Condition_Where_Clause" />
 		</if>
@@ -112,7 +107,7 @@
 		parameterType="com.himalaya.app.user.domain.UserCondition"
 		resultType="java.lang.Long">
 		select count(*)
-		from tb_sys_user
+		  from tb_sys_user
 		<if test="_parameter != null">
 			<include refid="Condition_Where_Clause" />
 		</if>

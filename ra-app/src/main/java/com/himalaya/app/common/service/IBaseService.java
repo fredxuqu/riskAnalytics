@@ -36,26 +36,26 @@ public interface IBaseService <Entity, PK>{
 
     /**
      * Find by condition
-     * @param T condition
+     * @param condition
      * @return
      */
-    <T extends BaseCondition> List<Entity> queryByCondition(T condition);
+    <T> List<Entity> queryByCondition(T condition);
     
     /**
      * Count by condition
-     * @param T condition
+     * @param condition
      * @return
      */
     <T extends BaseCondition> Long countByCondition(T condition);
-    
+
     /**
-     * Paging find by condition 
+     * Paging find by condition
      * @param <T>
      * @param condition
      * @return
      */
     <T extends BaseCondition> PageDTO<Entity> queryByPage(T condition);
-    
+
     /**
      * Query all records
      * @return

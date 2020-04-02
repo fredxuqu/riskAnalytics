@@ -16,7 +16,14 @@ public class AbstractService {
 
 	@Autowired
 	public org.dozer.Mapper dozerMapper;
-	
+
+	/**
+	 * copy list
+	 * @param list
+	 * @param destinationClass
+	 * @param <T>
+	 * @return
+	 */
 	protected <T> List<T> dozerMapList(List<?> list, Class<T> destinationClass){
 		List<T> returnList = new ArrayList<T>();
 		if(list != null) {
@@ -26,7 +33,15 @@ public class AbstractService {
 		}
 		return returnList;
 	}
-	
+
+	/**
+	 * get paging information from condition
+	 * @param condition
+	 * @param action
+	 * @param <C>
+	 * @param <T>
+	 * @return
+	 */
 	protected <C extends BaseCondition, T> PageDTO<T> findPage(C condition, PageAction action) {
 		if (condition != null) {
 			Assert.notNull(condition.getPaging(), "Paging parameter is null!");
@@ -34,14 +49,22 @@ public class AbstractService {
 		Paging paging = condition.getPaging();
 		int pageNum = paging.getPageNo();
 		int pageSize = paging.getPageSize();
-		Page<T> page = PageHelper.startPage(pageNum, pageSize);
+		String orderBy = paging.getOrderBy();
+		Page<T> page = PageHelper.startPage(pageNum, pageSize, orderBy);
 		action.execute();
 		PageDTO<T> pageDTO = new PageDTO<T>(page);
 		pageDTO.setCount(page.getTotal());
 		pageDTO.setIndex(page.getPageNum());
 		return pageDTO;
 	}
-	
+
+	/**
+	 * provide paging condition directly
+	 * @param paging
+	 * @param action
+	 * @param <T>
+	 * @return
+	 */
 	protected <T> PageDTO<T> findPage(Paging paging, PageAction action) {
 		Assert.notNull(paging, "Paging parameter is null!");
 		Page<T> page = PageHelper.startPage(paging.getPageNo(), paging.getPageSize());
@@ -51,7 +74,10 @@ public class AbstractService {
 		pageDTO.setIndex(page.getPageNum());
 		return pageDTO;
 	}
-	
+
+	/**
+	 * Paging query logic
+	 */
 	@FunctionalInterface
 	protected interface PageAction {
 		
