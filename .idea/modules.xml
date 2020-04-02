@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ra-admin/ra-admin.iml" filepath="$PROJECT_DIR$/ra-admin/ra-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ra-app/ra-app.iml" filepath="$PROJECT_DIR$/ra-app/ra-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ra-common/ra-common.iml" filepath="$PROJECT_DIR$/ra-common/ra-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ra-eureka/ra-eureka.iml" filepath="$PROJECT_DIR$/ra-eureka/ra-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ra-facade/ra-facade.iml" filepath="$PROJECT_DIR$/ra-facade/ra-facade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ra-web/ra-web.iml" filepath="$PROJECT_DIR$/ra-web/ra-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/riskanalystic.iml" filepath="$PROJECT_DIR$/riskanalystic.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ra-admin" />
+        <module name="ra-app" />
+        <module name="ra-common" />
+        <module name="ra-web" />
+        <module name="ra-eureka" />
+        <module name="ra-facade" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ra-admin" target="1.8" />
+      <module name="ra-app" target="1.8" />
+      <module name="ra-common" target="1.8" />
+      <module name="ra-eureka" target="1.8" />
+      <module name="ra-facade" target="1.8" />
+      <module name="ra-web" target="1.8" />
+      <module name="riskanalystic" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
