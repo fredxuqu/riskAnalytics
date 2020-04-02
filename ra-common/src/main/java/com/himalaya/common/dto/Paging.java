@@ -1,5 +1,6 @@
 package com.himalaya.common.dto;
 
+
 import java.io.Serializable;
 
 public class Paging implements Serializable{
@@ -30,6 +31,11 @@ public class Paging implements Serializable{
 	 * 	数据库结束下标，包含
 	 */
 	private int endRow;
+
+	/**
+	 * 排序字段
+	 */
+	private String orderBy;
 
 	/**
 	 * 	默认不分页
@@ -90,7 +96,15 @@ public class Paging implements Serializable{
 	public void setEndRow(int endRow) {
 		this.endRow = endRow;
 	}
-	
+
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
 	private void cal() {
 		if ((this.pageNo > 0) && this.pageSize > 0) {
 			int i = this.pageNo * this.pageSize;
